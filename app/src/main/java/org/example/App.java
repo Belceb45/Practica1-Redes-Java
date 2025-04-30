@@ -3,15 +3,8 @@
  */
 package org.example;
 
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoException;
-import com.mongodb.ServerApi;
-import com.mongodb.ServerApiVersion;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
+import org.example.conexion.MongoDBConnection;
+import org.example.utils.ProductoService;
 
 public class App {
     public static void main(String[] args) {
