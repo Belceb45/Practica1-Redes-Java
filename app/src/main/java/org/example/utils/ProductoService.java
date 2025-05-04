@@ -3,34 +3,37 @@ package org.example.utils;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
-import java.util.Date;
+
+import java.util.ArrayList;
+
+import java.util.List;
 
 public class ProductoService {
 
-      private MongoCollection<Document> collection;
+    private MongoCollection<Document> collection;
 
-    public ProductoService(MongoDatabase database) {
-        this.collection = database.getCollection("productos");
+    //
+    public ProductoService(MongoDatabase database){
+        this.collection=database.getCollection("productos");
+
     }
 
-    public void agregarProducto(String nombre, String descripcion, double precio, String categoria, int cantidadStock) {
-        Document producto = new Document("nombre", nombre)
-                .append("descripcion", descripcion)
-                .append("precio", precio)
-                .append("categoria", categoria)
-                .append("cantidad_stock", cantidadStock)
-                .append("fecha_creacion", new Date());
+    public List<Producto> obtenerTodosLosProductos() {
+        List<Producto> productos = new ArrayList<>();
 
-        collection.insertOne(producto);
-        System.out.println("Producto agregado al catalogo: " + nombre);
-    }
-
-    public void encontrarProducto(String nombre) {
-        Document producto = collection.find(new Document("nombre", nombre)).first();
-        if (producto != null) {
-            System.out.println("Producto encontrado: " + producto.toJson());
-        } else {
-            System.out.println("Producto no encontrado.");
+        for (Document doc : collection.find()) {
+            Producto p = new Producto(
+                doc.getString("_id"),  // si ObjectId
+                doc.getString("title"),
+                doc.getString("type"),
+                doc.getString("description"),
+                doc.getString("pathFile"),
+                doc.getDouble("price"),
+                doc.getInteger("rating")
+            );
+            productos.add(p);
         }
+
+        return productos;
     }
 }

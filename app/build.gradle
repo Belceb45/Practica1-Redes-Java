@@ -20,6 +20,7 @@ dependencies {
     // MongoDB database
     implementation 'org.mongodb:mongodb-driver-sync:5.1.0'
 
+    implementation 'org.slf4j:slf4j-simple:2.0.9' // o la más reciente
 
 
     // Use JUnit Jupiter for testing.

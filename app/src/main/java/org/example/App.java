@@ -3,32 +3,16 @@
  */
 package org.example;
 
-import org.example.conexion.MongoDBConnection;
-import org.example.utils.ProductoService;
+import org.example.servidor.Servidor;
+
+
 
 public class App {
     public static void main(String[] args) {
         
-          // Cadena de conexión de MongoDB Atlas
-          String connectionString = "mongodb+srv://rubiodiego001:DRH7udJA6cATX@catalogo.uvho718.mongodb.net/?retryWrites=true&w=majority&appName=catalogo";
-          String dbName = "catalogo";
-  
-          // Crear una conexión a MongoDB
-          MongoDBConnection dbConnection = new MongoDBConnection(connectionString, dbName);
-  
-          // Crear un servicio de productos
-          ProductoService productoService = new ProductoService(dbConnection.getDatabase());
-  
-          // Agregar productos
-          productoService.agregarProducto("Smartphone X100", "Smartphone con pantalla de 6.5 pulgadas y camara de 48MP", 299.99, "Electronica", 50);
-          productoService.agregarProducto("Laptop X200", "Laptop con procesador Intel i7 y 16GB de RAM", 799.99, "Electronica", 30);
-  
-          // Buscar un producto
-          productoService.encontrarProducto("Smartphone X100");
-  
-          // Cerrar la conexión
-          dbConnection.close();
-        
+        Servidor.main(args);
+          
+
         }
     }
 

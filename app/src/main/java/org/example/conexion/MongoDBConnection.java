@@ -28,7 +28,7 @@ public class MongoDBConnection {
             // Crear el cliente y conectar a la base de datos
             mongoClient = MongoClients.create(settings);
             database = mongoClient.getDatabase(dbName);
-            System.out.println("Conexión exitosa a MongoDB");
+            System.out.println("Conexion exitosa a MongoDB");
 
         } catch (MongoException e) {
             e.printStackTrace();
